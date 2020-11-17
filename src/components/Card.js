@@ -8,14 +8,14 @@ const Card = () => {
       await axios.get("https://type.fit/api/quotes").then((res) => {
         const id = res.data;
         const randomId = id[Math.floor(Math.random() * id.length)];
-        return setQuote(randomId);
+        setQuote(randomId);
       });
     };
     result();
   }, []);
 
   if (quote === null) {
-    return Object;
+    return <h1>Loading!!!</h1>;
   }
 
   return (
@@ -25,7 +25,7 @@ const Card = () => {
       </div>
       <div className="content">
         <p>{quote.text}</p>
-        <h5>-{quote.author}</h5>
+        <h4>-{quote.author}</h4>
       </div>
     </div>
   );
