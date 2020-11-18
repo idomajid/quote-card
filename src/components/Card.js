@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import Loading from "./Loading";
 
 const Card = () => {
   const [quote, setQuote] = useState(null);
@@ -15,8 +16,12 @@ const Card = () => {
   }, []);
 
   if (quote === null) {
-    return <h1>Loading!!!</h1>;
+    return <Loading />;
   }
+
+  const refreshWeb = () => {
+    window.location.reload();
+  };
 
   return (
     <div className="ui card">
@@ -26,6 +31,11 @@ const Card = () => {
       <div className="content">
         <p>{quote.text}</p>
         <h4>-{quote.author}</h4>
+        <div className="extra content">
+          <button onClick={() => refreshWeb()} className="ui primary button">
+            Refresh quote
+          </button>
+        </div>
       </div>
     </div>
   );
@@ -34,16 +44,5 @@ const Card = () => {
 export default Card;
 
 /*
-  
-*/
 
-/* 
-<div className="ui card">
-        <div className="content">
-          <div className="header">Random quote</div>
-        </div>
-        <div className="content">
-          
-        </div>
-      </div>
-      */
+*/
